@@ -42,7 +42,10 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class awsnodes {
+class awsnodes (
+  $ec2i,
+) {
+  create_resources(awsnodes::linuxnode, $ec2i)
 
 
 }
