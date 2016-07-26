@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# ERB generated userdata script
+
+PE_MASTER='<%= @pe_master_hostname %>'
+AWS_INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/.$//')
+
+<%- if @nodename -%>
+# since we were passed @nodename we are prepending it
+# to instance-id
+PE_CERTNAME="<%= @nodename %>-${AWS_INSTANCE_ID}"
+
+<%- else -%>
+PE_CERTNAME="${AWS_INSTANCE_ID}"
+
+<%- end -%>
+# these are attributes we know already
+PP_INSTANCE_ID="${AWS_INSTANCE_ID}"
+
+<%- if @pp_image_name -%>
+PP_IMAGE_NAME='<%= @pp_image_name %>'
+<%- else -%>
+PP_IMAGE_NAME=$(curl -s http://169.254.169.254/latest/meta-data/ami-id)
+<%- end -%>
+
+function install_pe_agent () {
+  curl -sk https://$PE_MASTER:8140/packages/current/install.bash | /bin/bash -s agent:certname=$PE_CERTNAME
+}
+
+install_pe_agent
