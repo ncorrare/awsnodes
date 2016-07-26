@@ -4,7 +4,7 @@ define awsnodes::linuxnode (
   $pp_created_by      = "nicolas",
   $key_name           = "nico-usw-mbook",
   $image_ids          = "ami-775e4f16",
-  $security_groups    = ['tse-crossconnect', 'tse-agent'],
+  $security_groups    = ['tse-crossconnect', 'tse-master'],
   $subnet             = 'tse-subnet-avza-1',
   $pe_master_hostname = $::ec2_metadata['local-hostname'],
   $nodename           = $title,
