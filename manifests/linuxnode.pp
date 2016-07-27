@@ -2,6 +2,7 @@ define awsnodes::linuxnode (
   $pp_department      = "tse",
   $pp_project         = "allstate/demo/workshop",
   $pp_created_by      = "nicolas",
+  $pp_role            = "agent",
   $key_name           = "nico-usw-mbook",
   $image_ids          = "ami-775e4f16",
   $security_groups    = ['tse-crossconnect', 'tse-master'],
