@@ -1,6 +1,6 @@
 {
   "name": "ncorrare-awsnodes",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "author": "ncorrare",
   "summary": "A module to provision AWS resources.",
   "license": "Apache-2.0",
@@ -12,4 +12,3 @@
   ],
   "data_provider": null
 }
-
